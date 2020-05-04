@@ -48,9 +48,43 @@
 					<div class="swiper-button-next" slot="button-next"></div>
 				</swiper>
 			</div>
-			<div class="ads-box"></div>
-			<div class="banner"></div>
-			<div class="product-box"></div>
+			<div class="ads-box">
+				<a href="'/product/'+item.id" target="_blank" v-for="(item, index) in adsList" :key="index">
+					<img :src="item.img" />
+				</a>
+			</div>
+			<div class="banner">
+				<a href="/product/30" target="_blank">
+					<img src="/imgs/banner-1.png" />
+				</a>
+			</div>
+		</div>
+		<div class="product-box">
+			<div class="container">
+				<span class="title">手机</span>
+				<div class="wrapper">
+					<div class="banner-left">
+						<a href="/product/3" target="_blank">
+							<img src="/imgs/mix-alpha.jpg" />
+						</a>
+					</div>
+					<div class="list-box">
+						<div class="list-item" v-for="(item, index) in phoneList" :key="index">
+							<span class="pro-tag" :class="{ 'new-pro': index % 2 == 0 }">新品</span>
+							<div class="item-img">
+								<img :src="item.mainImage" />
+							</div>
+							<div class="item-info">
+								<span class="item-name">{{ item.name }}</span>
+								<p class="item-subtitle">{{ item.subtitle }}</p>
+								<div class="item-price">
+									<p>{{ item.price }}元</p>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
 		</div>
 		<service-bar></service-bar>
 	</div>
@@ -132,7 +166,44 @@ export default {
 				[0, 0, 0, 0],
 				[0, 0, 0, 0],
 			],
+			adsList: [
+				{
+					id: 33,
+					img: '/imgs/ads/ads-1.png',
+				},
+				{
+					id: 33,
+					img: '/imgs/ads/ads-2.jpg',
+				},
+				{
+					id: 33,
+					img: '/imgs/ads/ads-3.png',
+				},
+				{
+					id: 33,
+					img: '/imgs/ads/ads-4.jpg',
+				},
+			],
+			phoneList: [],
 		};
+	},
+	created() {
+		this.getData();
+	},
+	methods: {
+		getData() {
+			this.$axios
+				.get('/products', {
+					params: {
+						categoryId: 100012,
+						pageSize: 8,
+					},
+				})
+				.then(res => {
+					console.log(res);
+					this.phoneList = res.list;
+				});
+		},
 	},
 	components: {
 		Swiper,
@@ -221,6 +292,104 @@ export default {
 				}
 				.swiper-button-prev {
 					left: 274px;
+				}
+			}
+		}
+		.ads-box {
+			@include flex();
+			margin-top: 14px;
+			margin-bottom: 31px;
+			a {
+				width: calc((100% - 42px) / 4);
+				height: 167px;
+			}
+		}
+		.banner {
+			margin-bottom: 50px;
+		}
+	}
+	.product-box {
+		background-color: $colorJ;
+		padding: 30px 0 50px;
+		.container {
+			.title {
+				display: block;
+				font-size: 22px;
+				color: $colorB;
+				margin-bottom: 20px;
+			}
+			.wrapper {
+				display: flex;
+				.banner-left {
+					margin-right: 16px;
+					img {
+						width: 224px;
+						height: 619px;
+					}
+				}
+				.list-box {
+					width: 986px;
+					height: 619px;
+					display: flex;
+					flex-wrap: wrap; //空间不足时自动换行
+					justify-content: space-between;
+					align-content: space-between; //多行时，设置行与行之间的间隙排列
+					.list-item {
+						width: 236px;
+						height: 302px;
+						background-color: $colorG;
+						text-align: center;
+						.pro-tag {
+							display: inline-block;
+							width: 67px;
+							height: 24px;
+							font-size: 14px;
+							line-height: 24px;
+							color: $colorG;
+							&.new-pro {
+								background-color: #7ecf68;
+							}
+							&.kill-pro {
+								background-color: #e82626;
+							}
+						}
+						.item-img {
+							img {
+								width: 100%;
+								height: 195px;
+							}
+						}
+						.item-info {
+							.item-name {
+								font-size: 14px;
+								color: $colorB;
+								font-weight: bold;
+							}
+							.item-subtitle {
+								margin-top: 6px;
+								font-size: 12px;
+								color: $colorD;
+								font-weight: bold;
+							}
+							.item-price {
+								margin-top: 11px;
+								height: 22px;
+								p {
+									font-size: 14px;
+									color: $colorA;
+									font-weight: bold;
+									line-height: 22px;
+									cursor: pointer;
+									&::after {
+										@include bgImg(22px, 22px, '/imgs/icon-cart-hover.png');
+										content: ' ';
+										margin-left: 5px;
+										vertical-align: middle;
+									}
+								}
+							}
+						}
+					}
 				}
 			}
 		}
