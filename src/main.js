@@ -3,10 +3,15 @@ import App from './App.vue'
 import router from './router'
 import store from './store'
 import axios from './api/apiConfig'
-import './assets/scss/reset.scss';
+import VueLazyLoad from 'vue-lazyload'
+// import './assets/scss/reset.scss';
 
 Vue.config.productionTip = false
 Vue.prototype.$axios = axios
+
+Vue.use(VueLazyLoad, {
+  loading: '/imgs/loading-svg/loading-bars.svg'
+})
 
 // mock开关
 const mock = false;
