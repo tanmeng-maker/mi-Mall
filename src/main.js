@@ -3,6 +3,7 @@ import App from './App.vue'
 import router from './router'
 import store from './store'
 import axios from './api/apiConfig'
+import './assets/scss/reset.scss';
 
 Vue.config.productionTip = false
 Vue.prototype.$axios = axios

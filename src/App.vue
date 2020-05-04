@@ -26,7 +26,4 @@ export default {
 	},
 };
 </script>
-<style lang="scss">
-@import './assets/scss/reset.scss';
-@import './assets/scss/config.scss';
-</style>
+<style lang="scss"></style>

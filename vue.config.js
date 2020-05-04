@@ -12,5 +12,12 @@ module.exports = {
                 }
             }
         }
+    },
+    css: {
+        loaderOptions: {
+            sass: {
+                prependData: `@import "./src/assets/scss/base.scss";` //引入全局变量   
+            }
+        }
     }
 }
