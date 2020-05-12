@@ -13,8 +13,13 @@
                     <a href="javascript:;" v-if="username">{{ username }}</a>
                     <a href="javascript:;" v-else @click="goToLogin">登录</a>
                     <a href="javascript:;" v-if="username">我的订单</a>
-                    <a href="javascript:;" class="my-cart" @click="goToCart">
-                        <span class="icon-cart"></span>购物车
+                    <a
+                        href="javascript:;"
+                        class="my-cart"
+                        :class="{'isCartNum':cartCount!=0}"
+                        @click="goToCart"
+                    >
+                        <span class="icon-cart" :class="{'isCartNum':cartCount!=0}"></span>购物车
                         <span>( {{cartCount}} )</span>
                     </a>
                 </div>
@@ -177,13 +182,24 @@ export default {
             }
             .my-cart {
                 width: 110px;
-                background-color: #ff6600;
+                background-color: #424242;
                 text-align: center;
-                color: #ffffff;
+                color: #b0b0b0;
                 margin-right: 0;
                 .icon-cart {
-                    @include bgImg(16px, 12px, "/imgs/icon-cart-checked.png");
+                    @include bgImg(16px, 12px, "/imgs/icon-cart.png");
                     margin-right: 4px;
+                }
+                &.isCartNum {
+                    color: #ffffff;
+                    background-color: #ff6600;
+                    .icon-cart {
+                        @include bgImg(
+                            16px,
+                            12px,
+                            "/imgs/icon-cart-checked.png"
+                        );
+                    }
                 }
             }
         }

@@ -6,7 +6,7 @@ Vue.use(Vuex)
 export default new Vuex.Store({
   state: {
     username: JSON.parse(sessionStorage.getItem('username')),
-    cartCount: sessionStorage.getItem('cartCount')
+    cartCount: sessionStorage.getItem('cartCount') || 0
   },
   mutations: {
     saveUserName(state, username) {

@@ -57,6 +57,7 @@ export default {
     line-height: 69px;
     border-top: 1px solid $colorH;
     background-color: $colorG;
+    z-index: 10;
     // 设置下面两个元素可以直接设置吸顶效果
     // position: sticky;
     // top: 0;

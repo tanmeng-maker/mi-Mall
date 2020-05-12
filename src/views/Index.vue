@@ -241,16 +241,25 @@ export default {
             });
         },
         addCart(item) {
-            this.showModal = true;
-            // this.$axios
-            // 	.post('/carts', {
-            // 		productId: item.id,
-            // 		selected: true,
-            // 	})
-            // 	.then(res => {
-            // 		this.showModal = true;
-            // 		//   this.$store.dispatch('saveCartCount',res.cartTotalQuantity);
-            // 	});
+            if (this.$cookie.get("userId")) {
+                this.$axios
+                    .post("/carts", {
+                        productId: item.id,
+                        selected: true
+                    })
+                    .then(res => {
+                        this.showModal = true;
+                        this.$store.dispatch(
+                            "saveCartCount",
+                            res.cartTotalQuantity
+                        );
+                    })
+                    .catch(err => {
+                        this.showModal = true;
+                    });
+            } else {
+                this.$router.push("/login");
+            }
         },
         goToCart() {
             this.$router.push("/cart");

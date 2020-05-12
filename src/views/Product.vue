@@ -106,8 +106,12 @@ export default {
             });
         },
         buy() {
-            let id = this.$route.params.id;
-            this.$router.push(`/detail/${id}`);
+            if (this.$cookie.get("userId")) {
+                let id = this.$route.params.id;
+                this.$router.push(`/detail/${id}`);
+            } else {
+                this.$router.push("/login");
+            }
         }
     },
     components: {
