@@ -4,11 +4,13 @@ import router from './router'
 import store from './store'
 import axios from './api/apiConfig'
 import VueLazyLoad from 'vue-lazyload'
+import VueCookie from 'vue-cookie'
 // import './assets/scss/reset.scss';
 
 Vue.config.productionTip = false
 Vue.prototype.$axios = axios
 
+Vue.use(VueCookie)
 Vue.use(VueLazyLoad, {
   loading: '/imgs/loading-svg/loading-bars.svg'
 })

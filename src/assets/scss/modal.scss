@@ -3,7 +3,7 @@
     z-index: 10;
     // background: rgba(0, 0, 0, 0.5);
     /* 过度动画 */
-    transition: top .5s;
+    transition: all .5s;
 
     &.slide-enter-active,
     &.slide-leave-active {
@@ -18,7 +18,6 @@
     .mask {
         @include position(fixed);
         background: rgba(0, 0, 0, 0.5);
-
     }
 
     .dialog {

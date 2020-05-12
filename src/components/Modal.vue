@@ -1,7 +1,7 @@
 <template>
 	<transition name="slide">
 		<div class="modal" v-show="showModal">
-			<div class="mask"></div>
+			<div class="mask" v-show="showModal"></div>
 			<div class="dialog">
 				<div class="modal-header">
 					<span>{{ title }}</span>
@@ -11,12 +11,12 @@
 					<slot name="body"></slot>
 				</div>
 				<div class="modal-footer">
-					<a href="javascript:;" class="btn" v-if="btnType == 1" @click="$emit('submit')">{{
-						confirmText
-					}}</a>
-					<a href="javascript:;" class="btn" v-else-if="btnType == 2" @click="$emit('cancel')">{{
-						cancelText
-					}}</a>
+					<a href="javascript:;" class="btn" v-if="btnType == 1" @click="$emit('submit')">
+						{{ confirmText }}
+					</a>
+					<a href="javascript:;" class="btn" v-else-if="btnType == 2" @click="$emit('cancel')">
+						{{ cancelText }}
+					</a>
 					<div class="btn-group" v-else>
 						<a href="javascript:;" class="btn" @click="$emit('submit')">{{ confirmText }}</a>
 						<a href="javascript:;" class="btn" @click="$emit('cancel')">{{ cancelText }}</a>

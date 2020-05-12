@@ -1,5 +1,6 @@
 import axios from 'axios';
 import router from '../router';
+import Vue from 'vue'
 
 //根据环境变脸区分接口的默认地址
 switch (process.env.NODE_ENV) {
@@ -23,14 +24,21 @@ axios.defaults.withCreadentials = true;
 axios.interceptors.response.use(
     response => {
         let res = response.data;
+        // history模式下，获取到当前路由的path
+        let path = router.history.current.path
         if (res.status == 0) {
             return res.data;
         } else if (res.status == 10) {
-            // window.location.href = '/#/login';
-            router.replace('/login');
+            if (path != '/index') {
+                // 会刷新页面
+                window.location.href = '/login';
+                // 不会刷新页面
+                // router.replace('/login');
+            }
             return Promise.reject(res);
         } else {
-            Message.warning(res.msg);
+            // Message.warning(res.msg);
+            alert(res.msg)
             return Promise.reject(res);
         }
     },
