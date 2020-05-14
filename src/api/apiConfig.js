@@ -33,8 +33,7 @@ axios.interceptors.response.use(
             // router.replace('/login');
             return Promise.reject(res);
         } else {
-            // Message.warning(res.msg);
-            alert(res.msg)
+            this.$message.warning(res.msg)
             return Promise.reject(res);
         }
     },

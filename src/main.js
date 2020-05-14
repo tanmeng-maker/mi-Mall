@@ -5,10 +5,14 @@ import store from './store'
 import axios from './api/apiConfig'
 import VueLazyLoad from 'vue-lazyload'
 import VueCookie from 'vue-cookie'
-// import './assets/scss/reset.scss';
+import {
+  Message
+} from 'element-ui'
+import 'element-ui/lib/theme-chalk/index.css'
 
 Vue.config.productionTip = false
 Vue.prototype.$axios = axios
+Vue.prototype.$message = Message
 
 Vue.use(VueCookie)
 Vue.use(VueLazyLoad, {

@@ -38,24 +38,23 @@ const routes = [{
   {
     path: '/order',
     name: 'Order',
-    // redirect: '/list',
     component: () => import('./views/Order.vue'),
     children: [{
-        path: '/list',
+        path: 'list',
         name: 'OrderList',
         component: () => import('./views/OrderList.vue'),
       },
       {
-        path: '/confirm',
+        path: 'confirm',
         name: 'OrderConfirm',
         component: () => import('./views/OrderConfirm.vue'),
       },
       {
-        path: '/pay',
+        path: 'pay',
         name: 'OrderPay',
         component: () => import('./views/OrderPay.vue'),
       }, {
-        path: '/alipay',
+        path: 'alipay',
         name: 'Alipay',
         component: () => import('./views/Alipay.vue'),
       }
