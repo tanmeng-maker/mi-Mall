@@ -1,5 +1,10 @@
 <template>
 	<div class="orderConfirm">
+		<order-header title="订单确认">
+			<template v-slot:tip>
+				<span>请认真填写收货地址</span>
+			</template>
+		</order-header>
 		<svg
 			version="1.1"
 			xmlns="http://www.w3.org/2000/svg"
@@ -191,6 +196,7 @@
 </template>
 
 <script>
+import OrderHeader from './../components/OrderHeader';
 import Modal from '../components/Modal';
 export default {
 	name: 'OrderConfirm',
@@ -333,6 +339,7 @@ export default {
 		},
 	},
 	components: {
+		OrderHeader,
 		Modal,
 	},
 };

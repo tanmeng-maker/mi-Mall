@@ -38,8 +38,8 @@ axios.interceptors.response.use(
         }
     },
     error => {
-        // let res = error.response;
-        //   Message.error(res.data.message);
+        let res = error.response;
+        this.$message.error(res.data.message);
         return Promise.reject(error);
     }
 );
