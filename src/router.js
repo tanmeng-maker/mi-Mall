@@ -1,5 +1,7 @@
 import Vue from 'vue'
 import Router from 'vue-router'
+import Home from './views/Home.vue'
+import Index from './views/Index.vue'
 
 Vue.use(Router)
 
@@ -7,11 +9,11 @@ const routes = [{
     path: '/',
     name: 'Home',
     redirect: '/index',
-    component: () => import('./views/Home.vue'),
+    component: Home,
     children: [{
         path: '/index',
         name: 'Index',
-        component: () => import('./views/Index.vue')
+        component: Index
       },
       {
         path: '/product/:id',
@@ -42,21 +44,21 @@ const routes = [{
     children: [{
         path: 'list',
         name: 'OrderList',
-        component: () => import('./views/OrderList.vue'),
+        component: () => import('./views/OrderList.vue')
       },
       {
         path: 'confirm',
         name: 'OrderConfirm',
-        component: () => import('./views/OrderConfirm.vue'),
+        component: () => import('./views/OrderConfirm.vue')
       },
       {
         path: 'pay',
         name: 'OrderPay',
-        component: () => import('./views/OrderPay.vue'),
+        component: () => import('./views/OrderPay.vue')
       }, {
         path: 'alipay',
         name: 'Alipay',
-        component: () => import('./views/Alipay.vue'),
+        component: () => import('./views/Alipay.vue')
       }
     ]
   }
