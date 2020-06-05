@@ -45,7 +45,7 @@ a {
     width: 110px;
     height: 55px;
 
-    &::before {
+    &::before {//
       content: " "; //必须写，用来占位
       @include bgImg(55px, 55px, "/imgs/mi-logo.png");
       transition: margin 0.2s;

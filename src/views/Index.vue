@@ -44,19 +44,20 @@
                 </div>
                 <swiper :options="swiperOption">
                     <swiper-slide v-for="(item, index) in slideList" :key="index">
-                        <a :href="'/product/' + item.id">
+                        <a :href="/product/ + item.id">
                             <img :src="item.img" />
                         </a>
                     </swiper-slide>
-                    <!-- Optional controls -->
+                    <!-- 如果需要分页器 -->
                     <div class="swiper-pagination" slot="pagination"></div>
+                    <!-- 如果需要导航按钮  左右-->
                     <div class="swiper-button-prev" slot="button-prev"></div>
                     <div class="swiper-button-next" slot="button-next"></div>
                 </swiper>
             </div>
             <div class="ads-box">
                 <a
-                    href="'/product/'+item.id"
+                    :href="'/product/'+item.id"
                     target="_blank"
                     v-for="(item, index) in adsList"
                     :key="index"
@@ -126,16 +127,16 @@ export default {
             swiperOption: {
                 autoplay: true,
                 loop: true,
-                effect: "cube",
+                effect: "cube",//切换效果
                 cubeEffect: {
-                    shadowOffset: 100,
-                    shadowScale: 0.6
+                    shadowOffset: 10000,//投影距离
+                    shadowScale: 0.6// 投影缩放比例
                 },
-                pagination: {
+                pagination: {// 如果需要分页器
                     el: ".swiper-pagination",
-                    clickable: true
+                    clickable: false
                 },
-                navigation: {
+                navigation: {// 如果需要前进后退按钮
                     nextEl: ".swiper-button-next",
                     prevEl: ".swiper-button-prev"
                 }
@@ -229,7 +230,7 @@ export default {
                     }
                 })
                 .then(res => {
-                    // console.log(res);
+                    console.log(res)
                     res.list = res.list.slice(6, 14);
                     this.phoneList = res.list;
                 });

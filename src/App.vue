@@ -1,31 +1,15 @@
 <template>
     <div id="app">
-        <router-view />
+        <!-- keep-alive是vue内置的一个组件,使被包含的组件保留状态避免重新渲染也可以在路由meta标签里使用 是否缓存-->
+        <keep-alive>
+            <router-view/><!--路由占位符-->
+        </keep-alive>   
     </div>
 </template>
 
 <script>
 export default {
     name: "App",
-    data() {
-        return {};
-    },
-    mounted() {
-        //本地加载请求静态json文件的形式  mock
-        // this.$axios.get('/mock/user/login.json').then(res => {
-        // 	this.res = res;
-        // });
-        // 通过easy-mock平台实现数据mock 去平台注册项目，复制地址
-        // this.$axios.get('/mock/user/login.json').then(res => {
-        // 	this.res = res;
-        // });
-        //本地集成mockjs实现数据mock
-        // this.$axios.get('/user/login').then(res => {
-        // 	this.res = res;
-        // });
-    }
 };
 </script>
-<style lang="scss">
-@import "./assets/scss/reset.scss";
-</style>
+

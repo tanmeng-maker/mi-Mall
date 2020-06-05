@@ -10,12 +10,12 @@
 					<a href="javascript:;">协议规则</a>
 				</div>
 				<div class="topbar-user">
-					<a href="javascript:;" v-if="username">{{ username }}</a>
+					<a href="javascript:;" v-if="username">{{ this.username }}</a>
 					<a href="javascript:;" v-else @click="goToLogin">登录</a>
 					<a href="javascript:;" v-if="username" @click="logOut">退出</a>
 					<a href="/order/list" v-if="username">我的订单</a>
 					<a href="javascript:;" class="my-cart" :class="{ isCartNum: cartCount != 0 }" @click="goToCart">
-						<span class="icon-cart" :class="{ isCartNum: cartCount != 0 }"></span>购物车
+						<span class="icon-cart"></span>购物车
 						<span>( {{ cartCount }} )</span>
 					</a>
 				</div>
@@ -45,7 +45,19 @@
 					</div>
 					<div class="item-menu">
 						<span>RedMi红米</span>
-						<!-- <div class="children"></div> -->
+						<div class="children">
+							<ul>
+								<li class="product" v-for="(item, index) in phoneList" :key="index">
+									<a :href="'/product/' + item.id" target="_blank">
+										<div class="pro-img">
+											<img v-lazy="item.mainImage" alt="item.subtitle" />
+										</div>
+										<div class="pro-name">{{ item.name }}</div>
+										<div class="pro-price">{{ item.price | currency }}</div>
+									</a>
+								</li>
+							</ul>
+						</div>
 					</div>
 					<div class="item-menu">
 						<span>电视</span>
@@ -111,7 +123,7 @@
 				</div>
 				<div class="header-search">
 					<div class="wrapper">
-						<input type="text" name="keyword" />
+						<input type="text" name="keyword" placeholder="搜索......" />
 						<a href="javascript:;"></a>
 					</div>
 				</div>
@@ -121,7 +133,7 @@
 </template>
 
 <script>
-import { mapState } from 'vuex';
+import { mapState } from 'vuex'//引入vuex中的辅助函数 使用多个状态
 export default {
 	name: 'nav-header',
 	data() {
@@ -130,7 +142,7 @@ export default {
 		};
 	},
 	computed: {
-		...mapState(['username', 'cartCount']),
+		...mapState(['username', 'cartCount']), 
 	},
 	filters: {
 		currency(val) {
@@ -138,24 +150,20 @@ export default {
 			return '￥' + val.toFixed(2) + '元';
 		},
 	},
-	created() {
-		this.getProductList();
+	mounted() {
+		this.$axios.get('/products', {
+					params: {
+						categoryId: '100012',
+						pageSize: 10,
+					},
+				}).then(res => {
+					this.phoneList = res.list;
+					console.log(res)
+				});
 	},
 	methods: {
 		goToLogin() {
 			this.$router.push('/login');
-		},
-		getProductList() {
-			this.$axios
-				.get('/products', {
-					params: {
-						categoryId: '100012',
-						pageSize: 6,
-					},
-				})
-				.then(res => {
-					this.phoneList = res.list;
-				});
 		},
 		goToCart() {
 			this.$router.push('/cart');
@@ -194,11 +202,11 @@ export default {
 					@include bgImg(16px, 12px, '/imgs/icon-cart.png');
 					margin-right: 4px;
 				}
-				&.isCartNum {
+				&.isCartNum {//串联选择器 相当于.my-cart.isCartNum 作用于同一个标签
 					color: #ffffff;
 					background-color: #ff6600;
 					.icon-cart {
-						@include bgImg(16px, 12px, '/imgs/icon-cart-checked.png');
+						@include bgImg(16px, 12px, '/imgs/icon	-cart-checked.png');
 					}
 				}
 			}
@@ -242,7 +250,7 @@ export default {
 						box-shadow: 0px 7px 6px 0px rgba(0, 0, 0, 0.11);
 						transition: all 0.5s;
 						background-color: #ffffff;
-						z-index: 10;
+						z-index: 99;
 						.product {
 							position: relative;
 							float: left;

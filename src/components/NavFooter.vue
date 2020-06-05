@@ -5,17 +5,17 @@
             <p>小米商城</p>
         </div>
         <div class="footer-link">
-            <a href="javascript:;">一人之下</a>
+            <a href="javascript:;">小米商城服务政策</a>
             <span>|</span>
-            <a href="javascript:;">武当王也</a>
+            <a href="javascript:;">MIUI</a>
             <span>|</span>
-            <a href="javascript:;">不摇碧莲张楚岚</a>
+            <a href="javascript:;">云服务</a>
             <span>|</span>
-            <a href="javascript:;">跟对大姐大，吃喝都不怕</a>
+            <a href="javascript:;">协议规则</a>
         </div>
         <div class="copyright">
             Copyright ©2019
-            <span class="domain">mi.futurefe.com</span>
+            <span class="domain">mi.com</span>
             All Rights Reserved.
         </div>
     </div>
@@ -24,9 +24,6 @@
 <script>
 export default {
     name: "nav-footer",
-    data() {
-        return {};
-    }
 };
 </script>
 <style lang="scss" scoped>

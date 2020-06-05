@@ -1,7 +1,5 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import Home from './views/Home.vue'
-import Index from './views/Index.vue'
 
 Vue.use(Router)
 
@@ -9,56 +7,56 @@ const routes = [{
     path: '/',
     name: 'Home',
     redirect: '/index',
-    component: Home,
+    component: () => import('@/views/Home.vue'),
     children: [{
         path: '/index',
         name: 'Index',
-        component: Index
+        component: () => import('@/views/Index.vue')
       },
       {
-        path: '/product/:id',
+        path: '/product/:id',//动态路由
         name: 'Product',
-        component: () => import('./views/Product.vue')
+        component: () => import('@/views/Product.vue')
       },
       {
         path: '/detail/:id',
         name: 'Detail',
-        component: () => import('./views/Detail.vue')
+        component: () => import('@/views/Detail.vue')
       },
     ]
   },
   {
     path: '/login',
     name: 'Login',
-    component: () => import('./views/Login.vue')
+    component: () => import('@/views/Login.vue')
   },
   {
     path: '/cart',
     name: 'Cart',
-    component: () => import('./views/Cart.vue'),
+    component: () => import('@/views/Cart.vue'),
   },
   {
     path: '/order',
     name: 'Order',
-    component: () => import('./views/Order.vue'),
+    component: () => import('@/views/Order.vue'),
     children: [{
         path: 'list',
         name: 'OrderList',
-        component: () => import('./views/OrderList.vue')
+        component: () => import('@/views/OrderList.vue')
       },
       {
         path: 'confirm',
         name: 'OrderConfirm',
-        component: () => import('./views/OrderConfirm.vue')
+        component: () => import('@/views/OrderConfirm.vue')
       },
       {
         path: 'pay',
         name: 'OrderPay',
-        component: () => import('./views/OrderPay.vue')
+        component: () => import('@/views/OrderPay.vue')
       }, {
         path: 'alipay',
         name: 'Alipay',
-        component: () => import('./views/Alipay.vue')
+        component: () => import('@/views/Alipay.vue')
       }
     ]
   }

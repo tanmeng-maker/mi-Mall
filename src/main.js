@@ -1,7 +1,8 @@
 import Vue from 'vue'
 import App from './App.vue'
-import router from './router'
+import router from './router/index'
 import store from './store'
+import "./assets/scss/reset.scss";
 import axios from './api/apiConfig'
 import VueLazyLoad from 'vue-lazyload'
 import VueCookie from 'vue-cookie'
@@ -15,6 +16,7 @@ Vue.prototype.$axios = axios
 Vue.prototype.$message = Message
 
 Vue.use(VueCookie)
+
 Vue.use(VueLazyLoad, {
   loading: '/imgs/loading-svg/loading-bars.svg'
 })

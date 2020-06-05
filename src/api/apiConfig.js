@@ -1,6 +1,8 @@
 import axios from 'axios';
-
-//根据环境变脸区分接口的默认地址
+import {
+    Message
+  } from 'element-ui';
+//根据环境变量区分接口的默认地址
 switch (process.env.NODE_ENV) {
     case 'production':
         //生产环境
@@ -15,10 +17,11 @@ switch (process.env.NODE_ENV) {
         axios.defaults.baseURL = '/api';
 }
 
-// 设置超时时间和跨域是否允许携带凭证
+// 设置请求超时时间和跨域是否允许携带凭证
 axios.defaults.timeout = 10000;
 axios.defaults.withCreadentials = true;
 
+//响应拦截
 axios.interceptors.response.use(
     response => {
         let res = response.data;
@@ -27,19 +30,19 @@ axios.interceptors.response.use(
         if (res.status == 0) {
             return res.data;
         } else if (res.status == 10) {
-            // 会刷新页面
+            //  重定向到另一个页面 会刷新页面
             window.location.href = '/login';
-            // 不会刷新页面
+            // 重定向到另一个页面 不会刷新页面
             // router.replace('/login');
             return Promise.reject(res);
         } else {
-            this.$message.warning(res.msg)
+            Message.warning(res.msg)
             return Promise.reject(res);
         }
     },
     error => {
         let res = error.response;
-        this.$message.error(res.data.message);
+        Message.error(res.data.message);
         return Promise.reject(error);
     }
 );
