@@ -27,7 +27,7 @@
 		"@vue/cli-service": "~4.3.0",
 		"babel-plugin-component": "^1.1.1",
 		"element-ui": "^2.13.1",
-		"node-sass": "^4.12.0",
+		"node-sass": "^7.0.0",
 		"sass-loader": "^8.0.2",
 		"vue-awesome-swiper": "^4.1.1",
 		"vue-cookie": "^1.1.4",
